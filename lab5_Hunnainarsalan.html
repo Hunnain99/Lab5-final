@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunnain Arsalan's Utilities</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f0f0f0, #e6e6e6);
+            color: #333;
+        }
+        header {
+            background-color: #2f2f2f;
+            color: white;
+            padding: 1.5em 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            background-color: #3b3b3b;
+        }
+        nav a:hover {
+            background-color: #5a5a5a;
+        }
+        section {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .tool {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .calculator input, .calculator button {
+            width: calc(50% - 10px);
+            padding: 10px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            background-color: #f7f7f7;
+        }
+        .calculator button {
+            background-color: #444;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #333;
+        }
+        .calculator #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2f2f2f;
+        }
+        .calendar {
+            text-align: center;
+        }
+        .calendar #currentDate {
+            font-size: 24px;
+            color: #555;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #2f2f2f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hunnain Arsalan's Utilities</h1>
+    </header>
+    <nav>
+        <a href="#calculator">Calculator</a>
+        <a href="#calendar">Calendar</a>
+    </nav>
+    <section>
+        <!-- Calculator -->
+        <div id="calculator" class="tool calculator">
+            <h2>Calculator</h2>
+            <input type="number" id="num1" placeholder="Enter first number">
+            <input type="number" id="num2" placeholder="Enter second number">
+            <button onclick="performCalculation('+')">Add</button>
+            <button onclick="performCalculation('-')">Subtract</button>
+            <button onclick="performCalculation('*')">Multiply</button>
+            <button onclick="performCalculation('/')">Divide</button>
+            <p id="result"></p>
+        </div>
+
+        <!-- Enhanced Calendar -->
+        <div id="calendar" class="tool calendar">
+            <h2>Today's Date</h2>
+            <p id="currentDate"></p>
+        </div>
+    </section>
+    <footer>
+        <p>© Hunnain Arsalan 2024. All rights reserved.</p>
+    </footer>
+
+    <script>
+        //  Calculator Logic
+        function performCalculation(operator) {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').innerText = "Please enter valid numbers.";
+                return;
+            }
+
+            let result;
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        document.getElementById('result').innerText = "Division by zero is not allowed.";
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = "Invalid operation";
+            }
+
+            document.getElementById('result').innerText = "Result: " + result;
+        }
+
+        // Enhanced Calendar Logic
+        document.getElementById('currentDate').innerText = new Date().toDateString();
+    </script>
+</body>
+</html>
